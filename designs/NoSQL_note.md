@@ -34,7 +34,7 @@ Due to the technical limitations of setting up SQL, we decide to take the NoSQL 
  - id: 1234567
  - customer_id: 3213534
  - restaurant_id: wd234eqedre32
- - content: [dish_name: fry_chicken, unit price: $5, amount: 3]
+ - content: [{dish_name: fried_chicken, unit_price: $5, amount: 3, dish_picture: xxx.png}]
  - extra_charge: $5
  - time: Jan 1st, 2023
  - driver_id: 21e32edqw
