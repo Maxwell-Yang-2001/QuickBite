@@ -24,7 +24,7 @@ Due to the technical limitations of setting up SQL, we decide to take the NoSQL 
  - id: `string`
  - customer_id: `string`
  - restaurant_id: `string`
- - content : `list[string]`
+ - content: `List[object]`
  - extra_charge: `string`
  - time: `time`
  - driver_id: `string`
