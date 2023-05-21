@@ -59,7 +59,7 @@ Due to the technical limitations of setting up SQL, we decide to take the NoSQL 
  - restaurant_phone_number: 21312434
  - schedule: 11:00am - 8:00pm, everyday
  - bank_account: 1234qwer321
- - Menu: [ dish_name:Fried rice, unite_price: $10, dish_description: ingredients, dish_picture: xxx.png]
+ - Menu: [{dish_name: Fried rice, unite_price: $10, dish_description: ingredients, dish_picture: xxx.png}]
  - restaurant_image: xyz.png
 
  ### Driver
