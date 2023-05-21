@@ -46,7 +46,7 @@ Due to the technical limitations of setting up SQL, we decide to take the NoSQL 
  - restaurant_description: `string`
  - restaurant_address: `string`
  - restaurant_phone_number: `string`
- - schedule: `time`
+ - schedule: `TODO`
  - bank_account: `string`
  - menu: `List[object]`
  - restaurant_image: `picture`
