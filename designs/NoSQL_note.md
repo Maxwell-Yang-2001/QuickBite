@@ -55,7 +55,7 @@ Due to the technical limitations of setting up SQL, we decide to take the NoSQL 
  - restaurant_id: 32d31s1
  - restaurant_name: Quickbite
  - restaurant_description: Chinese style
- - restaurant_address: 1234 West 21th street,
+ - restaurant_address: 1234 West 21th street
  - restaurant_phone_number: 21312434
  - schedule: 11:00am - 8:00pm, everyday
  - bank_account: 1234qwer321
