@@ -51,7 +51,7 @@ Due to the technical limitations of setting up SQL, we decide to take the NoSQL 
  - menu: `List[object]`
  - restaurant_image: `picture`
 
- ####Example:
+ #### Example:
  - restaurant_id: 32d31s1
  - restaurant_name: Quickbite
  - restaurant_description: Chinese style
