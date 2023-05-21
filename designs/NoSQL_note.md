@@ -15,7 +15,7 @@ Due to the technical limitations of setting up SQL, we decide to take the NoSQL 
 #### Example:
  - id: Thomas
  - email: xxxxx@gmail.com
- - address: Unit 123 23th street, Vancouver,BC
+ - address: Unit 123 23th street, Vancouver, BC
  - payment_method: `TODO`
  - phone_number: 236863xxxx
  - order_ids: [123321, 1234321, 5321321, ...]
