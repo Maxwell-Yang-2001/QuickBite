@@ -1,0 +1,33 @@
+.quick-bite-button {
+    display: inline-block;
+    background-color: white;
+    transition: background-color .2s;
+    height: 40px;
+    display: flex;
+    vertical-align: middle;
+    width: max-content;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 0 5px;
+}
+
+.quick-bite-button:hover {
+    background-color: #cccccc;
+}
+
+.quick-bite-button > img {
+    width: 24px;
+    height: 24px;
+}
+
+.quick-bite-button.quick-bite-bg {
+    background-color: #ff4000;
+}
+
+.quick-bite-button.quick-bite-bg:hover {
+    background-color: #cc3300;
+}
+
+.horizontal-separator {
+    margin: 0 20px;
+}

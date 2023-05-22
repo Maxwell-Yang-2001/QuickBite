@@ -8,6 +8,11 @@
       "type": "image/x-icon"
     },
     {
+      "src": "hypnotize.svg",
+      "sizes": "64x64",
+      "type": "image/svg"
+    },
+    {
       "src": "logo192.png",
       "type": "image/png",
       "sizes": "192x192"
