@@ -114,7 +114,7 @@ export const TopNavigator = () => {
         <PersonButton loggedIn={false} />
         <CartButton empty />
       </div>
-      <HorizontalSeparator />
+      <HorizontalSeparator verticallySpaced={false} />
     </>
   );
 };

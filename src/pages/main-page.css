@@ -10,7 +10,3 @@
 .store-card:hover {
     transform: scale(1.05);
 }
-
-.main-page-container {
-    margin: 20px auto;
-}

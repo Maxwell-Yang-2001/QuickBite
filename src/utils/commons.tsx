@@ -19,8 +19,12 @@ export const QuickBgButton = (props: {
   );
 };
 
-export const HorizontalSeparator = () => (
-  <hr className="horizontal-separator" />
+export const HorizontalSeparator = (props: { verticallySpaced: boolean }) => (
+  <hr
+    className={`horizontal-separator${
+      props.verticallySpaced ? " vertically-spaced" : ""
+    }`}
+  />
 );
 
 export const Spinner = () => (
@@ -32,4 +36,4 @@ export const Star = (props: { star: number }) => (
     <span>{props.star.toFixed(1)}</span>
     <img src={star} alt={"star"} />
   </div>
-)
+);

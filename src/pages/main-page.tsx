@@ -10,26 +10,26 @@ const StoreCard = () => (
       <Card.Img variant="top" src={mcdonalds} />
       <Card.Body>
         <Card.Title>McDonald's (Marine Drive)</Card.Title>
-        <Card.Text>
-          Classic Amercian fast food chain.
-        </Card.Text>
-        <Star star={4}/>
+        <Card.Text>Classic Amercian fast food chain.</Card.Text>
+        <Star star={4} />
       </Card.Body>
     </Card>
   </Col>
 );
 export const MainPage = () => (
-  <Container className="main-page-container">
-    <Row className="g-4">
-      <StoreCard />
-      <StoreCard />
-      <StoreCard />
-      <StoreCard />
-      <StoreCard />
-      <StoreCard />
-      <StoreCard />
-      <StoreCard />
-      <StoreCard />
-    </Row>
-  </Container>
+  <div className="page-container">
+    <Container>
+      <Row className="g-4">
+        <StoreCard />
+        <StoreCard />
+        <StoreCard />
+        <StoreCard />
+        <StoreCard />
+        <StoreCard />
+        <StoreCard />
+        <StoreCard />
+        <StoreCard />
+      </Row>
+    </Container>
+  </div>
 );

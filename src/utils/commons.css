@@ -1,3 +1,8 @@
+.page-container {
+    margin: 20px auto;
+    padding: 0 5%;
+}
+
 .quick-bite-button {
     display: inline-block;
     background-color: white;
@@ -29,15 +34,17 @@
 }
 
 .horizontal-separator {
-    margin: 0 20px;
+    width: min(calc(100vw - 40px), 100%);
+    margin: 0 auto;
+}
+
+.horizontal-separator.vertically-spaced {
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .quick-bite-spinner {
     color: #ff4000;
-}
-
-.star {
-    /* width: 50px; */
 }
 
 .star > span {
