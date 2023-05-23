@@ -1,7 +1,8 @@
 import React from "react";
+import star from "../assets/star.svg";
 import "./commons.css";
 
-export const Button = (props: {
+export const QuickBgButton = (props: {
   onClick?: () => void;
   children: any;
   colored: boolean;
@@ -21,3 +22,14 @@ export const Button = (props: {
 export const HorizontalSeparator = () => (
   <hr className="horizontal-separator" />
 );
+
+export const Spinner = () => (
+  <div className="spinner-border quick-bite-spinner" role="status"></div>
+);
+
+export const Star = (props: { star: number }) => (
+  <div className="star d-inline-flex align-items-center">
+    <span>{props.star.toFixed(1)}</span>
+    <img src={star} alt={"star"} />
+  </div>
+)

@@ -1,0 +1,16 @@
+.store-card > img {
+    height: 150px;
+    object-fit: cover;
+}
+
+.store-card {
+    transition: transform .5s;
+}
+
+.store-card:hover {
+    transform: scale(1.05);
+}
+
+.main-page-container {
+    margin: 20px auto;
+}

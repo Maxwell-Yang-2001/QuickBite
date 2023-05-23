@@ -74,11 +74,17 @@
     background-color: #e6e6e6;
     margin-right: 10px;
     padding: 10px;
+    border: 2px #e6e6e6 solid;
 }
 
-.top-navigator-search:focus {
-    border: 10px black solid;
+.top-navigator-search.empty > img:nth-child(3) {
+    visibility: hidden;
 }
+
+.top-navigator-search.focused {
+    border: 2px #ff4000 solid;
+}
+
 
 .top-navigator-search > * {
     margin: 5px;
@@ -90,4 +96,28 @@
     background-color: inherit;
     outline: none;
     height: 30px;
+}
+
+.quick-bite-rating-dropdown {
+    min-width: 80px;
+}
+
+.quick-bite-rating-dropdown > button {
+    height: 40px;
+    background-color: white;
+    border: none;
+}
+
+.quick-bite-rating-dropdown > button:hover {
+    background-color: #cccccc;
+}
+
+.quick-bite-rating-dropdown > button > :nth-child(1)  {
+    float: left;
+    width: 50px;
+}
+
+.quick-bite-rating-dropdown .dropdown-item:hover {
+    color: white;
+    background-color: #ff4000;
 }

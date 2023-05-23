@@ -31,3 +31,19 @@
 .horizontal-separator {
     margin: 0 20px;
 }
+
+.quick-bite-spinner {
+    color: #ff4000;
+}
+
+.star {
+    /* width: 50px; */
+}
+
+.star > span {
+    margin-right: 5px;
+}
+.star > * {
+    display: inline-flex;
+    float: right;
+}
