@@ -9,6 +9,8 @@ import xCircle from "../assets/x-circle.svg";
 import "./top-navigator.css";
 import { QuickBgButton, HorizontalSeparator, Star } from "../utils/commons";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
+import { connect } from "react-redux";
+import { Dispatch, setUser } from "../redux/action";
 
 const Logo = () => {
   return (
@@ -87,14 +89,32 @@ const RatingDropdown = () => {
   );
 };
 
-const PersonButton = (props: { loggedIn: boolean }) => {
+const mapStateToPersonButtonProps = (state: { user: string }) => ({
+  user: state.user,
+});
+
+const mapDispatchToPersonButtonProps = (dispatch: Dispatch) => ({
+  setUser: (user: string) => dispatch(setUser(user)),
+});
+
+const PersonButton = connect(
+  mapStateToPersonButtonProps,
+  mapDispatchToPersonButtonProps
+)((props: { user: string; setUser: (user: string) => void }) => {
   return (
     <QuickBgButton colored={false}>
-      <img src={props.loggedIn ? person_filled : person_empty} alt={"cart"} />
-      {!props.loggedIn && "Log In / Sign up"}
+      <img
+        src={props.user ? person_filled : person_empty}
+        alt={"cart"}
+        onClick={() => {
+          console.log("a");
+          props.setUser("a");
+        }}
+      />
+      {!props.user && "Log In / Sign up"}
     </QuickBgButton>
   );
-};
+});
 
 const CartButton = (props: { empty: boolean }) => {
   return (
@@ -111,7 +131,7 @@ export const TopNavigator = () => {
         <Logo />
         <SearchBar />
         <RatingDropdown />
-        <PersonButton loggedIn={false} />
+        <PersonButton />
         <CartButton empty />
       </div>
       <HorizontalSeparator verticallySpaced={false} />
