@@ -11,13 +11,14 @@ import { QuickBgButton, HorizontalSeparator, Star } from "../utils/commons";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Dispatch, setUser } from "../redux/action";
+import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <div className="logo col">
+    <Link to="/" className="logo col invisible-link">
       <img src={logo} alt={"QuickBite"} />
       <span>QuickBite</span>
-    </div>
+    </Link>
   );
 };
 

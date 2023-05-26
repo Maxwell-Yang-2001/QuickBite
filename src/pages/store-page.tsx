@@ -40,7 +40,7 @@ const Category = (props: { title: string }) => (
 export const StorePage = () => {
   return (
     <div className="page-container">
-      <img src={mcdonalds} className="store-page-banner" />
+      <img src={mcdonalds} className="store-page-banner" alt="store-banner" />
       <div className="store-page-name">
         <span>McDonald's (Marine Drive)</span>
       </div>
