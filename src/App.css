@@ -1,4 +1,5 @@
 .invisible-link, .invisible-link:hover {
     text-decoration: inherit;
     color: inherit;
+    width: fit-content;
 }

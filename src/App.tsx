@@ -1,9 +1,9 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { TopNavigator } from "./components.tsx/top-navigator";
-import { MainPage } from "./pages/main-page";
-import { StorePage } from "./pages/store-page";
+import { TopNavigator } from "./components/topNavigator";
+import { MainPage } from "./components/mainPage";
+import { StorePage } from "./components/storePage";
 
 const App = () => {
   return (

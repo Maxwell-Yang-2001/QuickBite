@@ -5,7 +5,12 @@ export default function reducer(state = defaultState, action: any) {
     case "SET_USER":
       return {
         ...state,
-        ...action.payload,
+        user: action.payload.user
+      };
+    case "SET_CURRENT_ITEM":
+      return {
+        ...state,
+        currentItem: action.payload.currentItem
       };
     default:
       return state;

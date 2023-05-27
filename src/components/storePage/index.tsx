@@ -1,12 +1,22 @@
 import React from "react";
-import mcdonalds from "../assets/mcdonalds.jpeg";
+import mcdonalds from "../../assets/mcdonalds.jpeg";
 import "./store-page.css";
-import { HorizontalSeparator, Star } from "../utils/commons";
+import { HorizontalSeparator, Star } from "../commons";
 import { Card, Col, Container, Row } from "react-bootstrap";
+import { Dispatch, setCurrentItem } from "../../redux/action";
+import { connect } from "react-redux";
+import ItemModal from "./item-modal";
 
-const ItemCard = () => (
+const mapDispatchToItemCardProps = (dispatch: Dispatch) => ({
+  setCurrentItem: (currentItem: string) => dispatch(setCurrentItem(currentItem)),
+});
+
+const ItemCard = connect(
+  undefined,
+  mapDispatchToItemCardProps
+)((props: { setCurrentItem: (currentItem: string) => void }) => (
   <Col md={4} xl={2}>
-    <Card className="item-card">
+    <Card className="item-card" onClick={() => props.setCurrentItem("a")}>
       <Card.Img variant="top" src={mcdonalds} />
       <Card.Body>
         <Card.Title>Big Mac</Card.Title>
@@ -15,7 +25,7 @@ const ItemCard = () => (
       </Card.Body>
     </Card>
   </Col>
-);
+));
 
 const Category = (props: { title: string }) => (
   <div className="store-page-category">
@@ -40,6 +50,7 @@ const Category = (props: { title: string }) => (
 export const StorePage = () => {
   return (
     <div className="page-container">
+      <ItemModal />
       <img src={mcdonalds} className="store-page-banner" alt="store-banner" />
       <div className="store-page-name">
         <span>McDonald's (Marine Drive)</span>

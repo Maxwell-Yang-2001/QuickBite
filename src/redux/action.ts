@@ -8,3 +8,12 @@ export const setUser = (user: string) => (dispatch: Dispatch) => {
     },
   });
 };
+
+export const setCurrentItem = (currentItem?: string) => (dispatch: Dispatch) => {
+  dispatch({
+    type: "SET_CURRENT_ITEM",
+    payload: {
+      currentItem,
+    },
+  });
+};

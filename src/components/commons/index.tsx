@@ -1,17 +1,18 @@
 import React from "react";
-import star from "../assets/star.svg";
+import star from "../../assets/star.svg";
 import "./commons.css";
 
 export const QuickBgButton = (props: {
   onClick?: () => void;
   children: any;
   colored: boolean;
+  className?: string;
 }) => {
   return (
     <div
       className={`quick-bite-button d-flex align-items-center${
         props.colored ? " quick-bite-bg" : ""
-      }`}
+      }${props.className ? ` ${props.className}` : " "}`}
       onClick={props.onClick}
     >
       {props.children}

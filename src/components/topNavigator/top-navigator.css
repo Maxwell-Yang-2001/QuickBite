@@ -121,3 +121,11 @@
     color: white;
     background-color: #ff4000;
 }
+
+.top-navigator-user {
+    min-width: 200px;
+}
+
+.top-navigator-user > * {
+    float: right;
+}

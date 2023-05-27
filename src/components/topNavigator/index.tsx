@@ -1,24 +1,26 @@
 import React, { useState } from "react";
-import logo from "../assets/logo.svg";
-import cart_empty from "../assets/cart_empty.svg";
-import cart_filled from "../assets/cart_filled.svg";
-import person_empty from "../assets/person_empty.svg";
-import person_filled from "../assets/person_filled.svg";
-import search from "../assets/search.svg";
-import xCircle from "../assets/x-circle.svg";
+import logo from "../../assets/logo.svg";
+import cart_empty from "../../assets/cart_empty.svg";
+import cart_filled from "../../assets/cart_filled.svg";
+import person_empty from "../../assets/person_empty.svg";
+import person_filled from "../../assets/person_filled.svg";
+import search from "../../assets/search.svg";
+import xCircle from "../../assets/x-circle.svg";
 import "./top-navigator.css";
-import { QuickBgButton, HorizontalSeparator, Star } from "../utils/commons";
+import { QuickBgButton, HorizontalSeparator, Star } from "../commons";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Dispatch, setUser } from "../redux/action";
+import { Dispatch, setUser } from "../../redux/action";
 import { Link } from "react-router-dom";
 
 const Logo = () => {
   return (
-    <Link to="/" className="logo col invisible-link">
-      <img src={logo} alt={"QuickBite"} />
-      <span>QuickBite</span>
-    </Link>
+    <div className="col">
+      <Link to="/" className="logo invisible-link">
+        <img src={logo} alt={"QuickBite"} />
+        <span>QuickBite</span>
+      </Link>
+    </div>
   );
 };
 
@@ -103,17 +105,17 @@ const PersonButton = connect(
   mapDispatchToPersonButtonProps
 )((props: { user: string; setUser: (user: string) => void }) => {
   return (
-    <QuickBgButton colored={false}>
-      <img
-        src={props.user ? person_filled : person_empty}
-        alt={"cart"}
+    <div className="top-navigator-user">
+      <QuickBgButton
+        colored={false}
         onClick={() => {
-          console.log("a");
           props.setUser("a");
         }}
-      />
-      {!props.user && "Log In / Sign up"}
-    </QuickBgButton>
+      >
+        <img src={props.user ? person_filled : person_empty} alt={"cart"} />
+        {props.user ?? "Log In / Sign up"}
+      </QuickBgButton>
+    </div>
   );
 });
 

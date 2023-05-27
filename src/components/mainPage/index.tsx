@@ -1,7 +1,7 @@
 import React from "react";
-import { Spinner, Star } from "../utils/commons";
+import { Spinner, Star } from "../commons";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import mcdonalds from "../assets/mcdonalds.jpeg";
+import mcdonalds from "../../assets/mcdonalds.jpeg";
 import "./main-page.css";
 import { Link } from "react-router-dom";
 
@@ -19,6 +19,7 @@ const StoreCard = () => (
     </Link>
   </Col>
 );
+
 export const MainPage = () => (
   <div className="page-container">
     <Container>
