@@ -29,7 +29,10 @@ const ItemModal = (props: {
       aria-labelledby="modal-title-vcenter"
       centered
       show={props.currentItem !== undefined}
-      onHide={() => props.clearCurrentItem()}
+      onHide={() => {
+        props.clearCurrentItem();
+        setItemCount(1);
+      }}
     >
       <Modal.Header closeButton className="item-modal-header"></Modal.Header>
       <Modal.Body>
