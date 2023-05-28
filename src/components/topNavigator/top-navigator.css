@@ -1,131 +1,132 @@
 .top-navigator {
-    width: 100%;
-    max-width: 100%;
-    height: 70px;
-    vertical-align: middle;
-    padding: 0 20px;
+  width: 100%;
+  max-width: 100%;
+  height: 70px;
+  vertical-align: middle;
+  padding: 0 20px;
 }
 
 .logo {
-    font-size: 30px;
-    font-weight: 700;
-    height: 45px;
-    display: flex;
-    align-items: center;
+  font-size: 30px;
+  font-weight: 700;
+  height: 45px;
+  display: flex;
+  align-items: center;
 }
 
 .logo span {
-    animation: rainbow 2.5s linear;
-    animation-iteration-count: infinite;
+  animation: rainbow 2.5s linear;
+  animation-iteration-count: infinite;
 }
 
-.logo img {
-    height: 30px;
-    margin-right: 5px;
-    transition: transform .7s ease-in-out;
+.logo svg {
+  width: 30px;
+  height: 30px;
+  margin-right: 5px;
+  transition: transform 0.7s ease-in-out;
 }
 
-.logo img:hover {
-    transform: rotate(180deg);
+.logo svg:hover {
+  transform: rotate(180deg);
 }
 
-@keyframes rainbow{
-    100%,0%{
-        color: rgb(255,0,0);
-    }
-    8%{
-        color: rgb(255,127,0);
-    }
-    16%{
-        color: rgb(255,255,0);
-    }
-    25%{
-        color: rgb(127,255,0);
-    }
-    33%{
-        color: rgb(0,255,0);
-    }
-    41%{
-        color: rgb(0,255,127);
-    }
-    50%{
-        color: rgb(0,255,255);
-    }
-    58%{
-        color: rgb(0,127,255);
-    }
-    66%{
-        color: rgb(0,0,255);
-    }
-    75%{
-        color: rgb(127,0,255);
-    }
-    83%{
-        color: rgb(255,0,255);
-    }
-    91%{
-        color: rgb(255,0,127);
-    }
+@keyframes rainbow {
+  100%,
+  0% {
+    color: rgb(255, 0, 0);
+  }
+  8% {
+    color: rgb(255, 127, 0);
+  }
+  16% {
+    color: rgb(255, 255, 0);
+  }
+  25% {
+    color: rgb(127, 255, 0);
+  }
+  33% {
+    color: rgb(0, 255, 0);
+  }
+  41% {
+    color: rgb(0, 255, 127);
+  }
+  50% {
+    color: rgb(0, 255, 255);
+  }
+  58% {
+    color: rgb(0, 127, 255);
+  }
+  66% {
+    color: rgb(0, 0, 255);
+  }
+  75% {
+    color: rgb(127, 0, 255);
+  }
+  83% {
+    color: rgb(255, 0, 255);
+  }
+  91% {
+    color: rgb(255, 0, 127);
+  }
 }
 
 .top-navigator-search {
-    height: 36px;
-    border-radius: 18px;
-    background-color: #e6e6e6;
-    margin-right: 10px;
-    padding: 10px;
-    border: 2px #e6e6e6 solid;
+  height: 36px;
+  border-radius: 18px;
+  background-color: #e6e6e6;
+  margin-right: 10px;
+  padding: 10px;
+  border: 2px #e6e6e6 solid;
 }
 
 .top-navigator-search.empty > img:nth-child(3) {
-    visibility: hidden;
+  visibility: hidden;
 }
 
 .top-navigator-search.focused {
-    border: 2px #ff4000 solid;
+  border: 2px #ff4000 solid;
 }
 
-
 .top-navigator-search > * {
-    margin: 5px;
+  margin: 5px;
 }
 
 .top-navigator-search > input {
-    width: 400px;
-    border: 0;
-    background-color: inherit;
-    outline: none;
-    height: 30px;
+  width: 400px;
+  border: 0;
+  background-color: inherit;
+  outline: none;
+  height: 30px;
 }
 
 .quick-bite-rating-dropdown {
-    min-width: 80px;
+  min-width: 80px;
 }
 
 .quick-bite-rating-dropdown > button {
-    height: 40px;
-    background-color: white;
-    border: none;
+  height: 40px;
+  background-color: white;
+  border: none;
 }
 
 .quick-bite-rating-dropdown > button:hover {
-    background-color: #cccccc;
+  background-color: #cccccc;
 }
 
-.quick-bite-rating-dropdown > button > :nth-child(1)  {
-    float: left;
-    width: 50px;
+.quick-bite-rating-dropdown > button > :nth-child(1) {
+  float: left;
+  width: 50px;
 }
 
 .quick-bite-rating-dropdown .dropdown-item:hover {
-    color: white;
-    background-color: #ff4000;
+  color: white;
+  background-color: #ff4000;
 }
 
 .top-navigator-user {
-    min-width: 200px;
+  min-width: 200px;
 }
 
 .top-navigator-user > * {
-    float: right;
+  float: right;
 }

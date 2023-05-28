@@ -1,5 +1,5 @@
 import React from "react";
-import star from "../../assets/star.svg";
+import { Star as StarIcon } from "../../assets";
 import "./commons.css";
 
 export const QuickBgButton = (props: {
@@ -35,6 +35,6 @@ export const Spinner = () => (
 export const Star = (props: { star: number }) => (
   <div className="star d-inline-flex align-items-center">
     <span>{props.star.toFixed(1)}</span>
-    <img src={star} alt={"star"} />
+    <StarIcon />
   </div>
 );

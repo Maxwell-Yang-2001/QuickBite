@@ -20,7 +20,6 @@ const ItemCard = connect(
       <Card.Img variant="top" src={mcdonalds} />
       <Card.Body>
         <Card.Title>Big Mac</Card.Title>
-        <Card.Text className="item-card-description">Yum!</Card.Text>
         <Card.Text>$199.99</Card.Text>
       </Card.Body>
     </Card>

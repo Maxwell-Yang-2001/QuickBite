@@ -1,56 +1,61 @@
 .page-container {
-    margin: 20px auto;
-    padding: 0 5%;
+  margin: 20px auto;
+  padding: 0 5%;
 }
 
 .quick-bite-button {
-    display: inline-block;
-    background-color: white;
-    transition: background-color .2s;
-    height: 40px;
-    display: flex;
-    vertical-align: middle;
-    width: max-content;
-    border-radius: 5px;
-    padding: 5px;
-    margin: 0 5px;
+  display: inline-block;
+  background-color: white;
+  transition: background-color 0.2s;
+  height: 40px;
+  display: flex;
+  vertical-align: middle;
+  width: max-content;
+  border-radius: 5px;
+  padding: 5px;
+  margin: 0 5px;
 }
 
 .quick-bite-button:hover {
-    background-color: #cccccc;
+  background-color: #cccccc;
 }
 
-.quick-bite-button > img {
-    width: 24px;
-    height: 24px;
+.quick-bite-button > svg {
+  width: 24px;
+  height: 24px;
 }
 
 .quick-bite-button.quick-bite-bg {
-    background-color: #ff4000;
+  background-color: #ff4000;
 }
 
 .quick-bite-button.quick-bite-bg:hover {
-    background-color: #cc3300;
+  background-color: #cc3300;
 }
 
 .horizontal-separator {
-    width: min(calc(100vw - 40px), 100%);
-    margin: 0 auto;
+  width: min(calc(100vw - 40px), 100%);
+  margin: 0 auto;
 }
 
 .horizontal-separator.vertically-spaced {
-    margin-top: 20px;
-    margin-bottom: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .quick-bite-spinner {
-    color: #ff4000;
+  color: #ff4000;
 }
 
 .star > span {
-    margin-right: 5px;
+  margin-right: 5px;
 }
+
 .star > * {
-    display: inline-flex;
-    float: right;
+  display: inline-flex;
+  float: right;
+}
+
+.disabled:hover {
+  cursor: not-allowed;
 }

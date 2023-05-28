@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import logo from "../../assets/logo.svg";
-import cart_empty from "../../assets/cart_empty.svg";
-import cart_filled from "../../assets/cart_filled.svg";
-import person_empty from "../../assets/person_empty.svg";
-import person_filled from "../../assets/person_filled.svg";
-import search from "../../assets/search.svg";
-import xCircle from "../../assets/x-circle.svg";
+import {
+  CartEmpty,
+  CartFilled,
+  PersonEmpty,
+  PersonFilled,
+  Search,
+  XCircle,
+  Logo as LogoIcon,
+} from "../../assets";
 import "./top-navigator.css";
 import { QuickBgButton, HorizontalSeparator, Star } from "../commons";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
@@ -17,7 +19,7 @@ const Logo = () => {
   return (
     <div className="col">
       <Link to="/" className="logo invisible-link">
-        <img src={logo} alt={"QuickBite"} />
+        <LogoIcon />
         <span>QuickBite</span>
       </Link>
     </div>
@@ -34,7 +36,7 @@ const SearchBar = () => {
         content ? "" : " empty"
       } ${focused ? " focused" : ""}`}
     >
-      <img src={search} alt={"search icon"} />
+      <Search />
       <input
         type="text"
         placeholder="Search for stores"
@@ -52,9 +54,7 @@ const SearchBar = () => {
         }}
         value={content}
       />
-      <img
-        src={xCircle}
-        alt="clear"
+      <XCircle
         onClick={(e) => {
           e.preventDefault();
           if (content) {
@@ -112,7 +112,7 @@ const PersonButton = connect(
           props.setUser("a");
         }}
       >
-        <img src={props.user ? person_filled : person_empty} alt={"cart"} />
+        {props.user ? <PersonFilled /> : <PersonEmpty />}
         {props.user ?? "Log In / Sign up"}
       </QuickBgButton>
     </div>
@@ -122,7 +122,7 @@ const PersonButton = connect(
 const CartButton = (props: { empty: boolean }) => {
   return (
     <QuickBgButton colored={false}>
-      <img src={props.empty ? cart_empty : cart_filled} alt={"cart"} />
+      {props.empty ? <CartEmpty /> : <CartFilled />}
     </QuickBgButton>
   );
 };
