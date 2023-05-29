@@ -9,11 +9,21 @@ export const setUser = (user: string) => (dispatch: Dispatch) => {
   });
 };
 
-export const setCurrentItem = (currentItem?: string) => (dispatch: Dispatch) => {
+export const setCurrentItem =
+  (currentItem?: string) => (dispatch: Dispatch) => {
+    dispatch({
+      type: "SET_CURRENT_ITEM",
+      payload: {
+        currentItem,
+      },
+    });
+  };
+
+export const addToCart = (quantity: number) => (dispatch: Dispatch) => {
   dispatch({
-    type: "SET_CURRENT_ITEM",
+    type: "ADD_TO_CART",
     payload: {
-      currentItem,
+      quantity,
     },
   });
 };

@@ -85,7 +85,7 @@ const RatingDropdown = () => {
       as={ButtonGroup}
       drop={"down-centered"}
       title={<Star star={minStar} />}
-      className="quick-bite-rating-dropdown"
+      className="top-navigator-dropdown"
       variant="light"
     >
       <Dropdown.ItemText>Minimum ratings</Dropdown.ItemText>
@@ -106,7 +106,7 @@ const PriceDropdown = () => {
   const [priceRangeIndex, setPriceRangeIndex] = useState(0);
   const priceRanges = [
     "Any Price",
-    "Less than $5",
+    "Below $5",
     "$5 - 9.99",
     "$10 - 14.99",
     "$15 - 19.99",
@@ -119,7 +119,7 @@ const PriceDropdown = () => {
       as={ButtonGroup}
       drop={"down-centered"}
       title={priceRanges[priceRangeIndex]}
-      className="quick-bite-rating-dropdown"
+      className="top-navigator-dropdown"
       variant="light"
     >
       <Dropdown.ItemText>Price Ranges</Dropdown.ItemText>

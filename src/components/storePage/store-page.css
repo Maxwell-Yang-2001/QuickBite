@@ -133,3 +133,9 @@
   align-items: center;
   justify-content: center;
 }
+
+.item-modal-add-button {
+  min-width: 200px;
+  padding: 0 10px;
+  justify-content: center;
+}

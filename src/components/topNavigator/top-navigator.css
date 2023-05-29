@@ -99,11 +99,11 @@
   height: 30px;
 }
 
-.quick-bite-rating-dropdown {
+.top-navigator-dropdown {
   min-width: 150px;
 }
 
-.quick-bite-rating-dropdown > button {
+.top-navigator-dropdown > button {
   height: 40px;
   background-color: white;
   border: none;
@@ -111,16 +111,16 @@
   align-items: center;
 }
 
-.quick-bite-rating-dropdown > button:hover {
+.top-navigator-dropdown > button:hover {
   background-color: #cccccc;
 }
 
-.quick-bite-rating-dropdown > button > :nth-child(1) {
+.top-navigator-dropdown > button > :nth-child(1) {
   float: left;
   width: 50px;
 }
 
-.quick-bite-rating-dropdown > button::after {
+.top-navigator-dropdown > button::after {
   margin-top: auto;
   margin-bottom: auto;
   margin-right: 0;
@@ -129,7 +129,7 @@
   float: right;
 }
 
-.quick-bite-rating-dropdown .dropdown-item:hover {
+.top-navigator-dropdown .dropdown-item:hover {
   color: white;
   background-color: #ff4000;
 }

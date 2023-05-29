@@ -1,10 +1,10 @@
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { Dispatch, setCurrentItem } from "../../redux/action";
+import { Dispatch, setCurrentItem, addToCart } from "../../redux/action";
 import { connect } from "react-redux";
 import mcdonalds from "../../assets/mcdonalds.jpeg";
 import { PlusCircle, DashCircle } from "../../assets";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const mapStateToProps = (state: { currentItem?: string }) => ({
   currentItem: state.currentItem,
@@ -12,16 +12,24 @@ const mapStateToProps = (state: { currentItem?: string }) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   clearCurrentItem: () => dispatch(setCurrentItem(undefined)),
+  addToCart: (quantity: number) => dispatch(addToCart(quantity)),
 });
 
 const ItemModal = (props: {
   currentItem?: string;
   clearCurrentItem: () => void;
+  addToCart: (quantity: number) => void;
 }) => {
   const [itemCount, setItemCount] = useState(1);
   const unitPrice = 199.99;
   const lower = 1,
     upper = 99;
+
+  useEffect(() => {
+    if (props.currentItem) {
+      setItemCount(1);
+    }
+  }, [props.currentItem]);
 
   return (
     <Modal
@@ -29,10 +37,7 @@ const ItemModal = (props: {
       aria-labelledby="modal-title-vcenter"
       centered
       show={props.currentItem !== undefined}
-      onHide={() => {
-        props.clearCurrentItem();
-        setItemCount(1);
-      }}
+      onHide={props.clearCurrentItem}
     >
       <Modal.Header closeButton className="item-modal-header"></Modal.Header>
       <Modal.Body>
@@ -48,7 +53,9 @@ const ItemModal = (props: {
               if (itemCount <= lower) return;
               setItemCount(itemCount - 1);
             }}
-            className={`clickable themed-content${itemCount <= lower ? " disabled" : ""}`}
+            className={`clickable themed-content${
+              itemCount <= lower ? " disabled" : ""
+            }`}
           />
           <span>{itemCount}</span>
           <PlusCircle
@@ -56,13 +63,26 @@ const ItemModal = (props: {
               if (itemCount >= upper) return;
               setItemCount(itemCount + 1);
             }}
-            className={`clickable themed-content${itemCount >= upper ? " disabled" : ""}`}
+            className={`clickable themed-content${
+              itemCount >= upper ? " disabled" : ""
+            }`}
           />
         </div>
-        <Button>Add to cart - ${(unitPrice * itemCount).toFixed(2)}</Button>
+        <Button
+          className="quick-bite-button quick-bite-bg item-modal-add-button"
+          onClick={(_) => {
+            props.addToCart(itemCount);
+            props.clearCurrentItem();
+          }}
+        >
+          Add to cart - ${(unitPrice * itemCount).toFixed(2)}
+        </Button>
       </Modal.Footer>
     </Modal>
   );
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemModal);
+function setContent(arg0: string) {
+  throw new Error("Function not implemented.");
+}
