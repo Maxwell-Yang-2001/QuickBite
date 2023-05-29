@@ -12,7 +12,7 @@ import "./top-navigator.css";
 import { QuickBgButton, HorizontalSeparator, Star } from "../commons";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Dispatch, setUser } from "../../redux/action";
+import { Dispatch, setUser, toggleCartOffcanvas } from "../../redux/action";
 import { Link } from "react-router-dom";
 import { PAGE } from "../../utils/constants";
 
@@ -136,18 +136,10 @@ const PriceDropdown = () => {
   );
 };
 
-const mapStateToPersonButtonProps = (state: { user: string }) => ({
-  user: state.user,
-});
-
-const mapDispatchToPersonButtonProps = (dispatch: Dispatch) => ({
-  setUser: (user: string) => dispatch(setUser(user)),
-});
-
-const PersonButton = connect(
-  mapStateToPersonButtonProps,
-  mapDispatchToPersonButtonProps
-)((props: { user: string; setUser: (user: string) => void }) => {
+const PersonButton = (props: {
+  user?: string;
+  setUser: (user: string) => void;
+}) => {
   return (
     <div className="top-navigator-user">
       <QuickBgButton
@@ -162,27 +154,55 @@ const PersonButton = connect(
       </QuickBgButton>
     </div>
   );
-});
+};
 
-const CartButton = (props: { empty: boolean }) => {
+const CartButton = (props: { empty: boolean; toggle: () => void }) => {
   return (
-    <QuickBgButton colored={false} className="clickable themed-content">
+    <QuickBgButton
+      colored={false}
+      onClick={props.toggle}
+      className="clickable themed-content"
+    >
       {props.empty ? <CartEmpty /> : <CartFilled />}
     </QuickBgButton>
   );
 };
 
-export const TopNavigator = (props: { page: PAGE }) => {
+const mapStateToProps = (state: {
+  user?: string;
+  cart: { [itemId: string]: number };
+}) => ({
+  user: state.user,
+  cart: state.cart,
+});
+
+const mapDispatchToProps = (dispatch: Dispatch) => ({
+  setUser: (user: string) => dispatch(setUser(user)),
+  toggleCartOffcanvas: () => dispatch(toggleCartOffcanvas()),
+});
+
+const TopNavigator = (props: {
+  page: PAGE;
+  user?: string;
+  cart: { [itemId: string]: number };
+  setUser: (user: string) => void;
+  toggleCartOffcanvas: () => void;
+}) => {
   return (
     <>
       <div className="top-navigator d-flex align-items-center">
         <Logo />
         <SearchBar page={props.page} />
         {props.page === PAGE.Home ? <RatingDropdown /> : <PriceDropdown />}
-        <PersonButton />
-        <CartButton empty />
+        <PersonButton {...props} />
+        <CartButton
+          empty={Object.keys(props.cart).length === 0}
+          toggle={props.toggleCartOffcanvas}
+        />
       </div>
       <HorizontalSeparator verticallySpaced={false} />
     </>
   );
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(TopNavigator);

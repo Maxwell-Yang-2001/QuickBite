@@ -27,3 +27,10 @@ export const addToCart = (quantity: number) => (dispatch: Dispatch) => {
     },
   });
 };
+
+export const toggleCartOffcanvas = () => (dispatch: Dispatch) => {
+  dispatch({
+    type: "TOGGLE_CART_OFFCANVAS",
+    payload: {},
+  });
+};

@@ -6,6 +6,7 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import { Dispatch, setCurrentItem } from "../../redux/action";
 import { connect } from "react-redux";
 import ItemModal from "./item-modal";
+import CartOffcanvas from "../cartOffcanvas";
 
 const mapDispatchToItemCardProps = (dispatch: Dispatch) => ({
   setCurrentItem: (currentItem: string) =>
@@ -128,6 +129,7 @@ export class StorePage extends React.Component<
     return (
       <div className="page-container">
         <ItemModal />
+        <CartOffcanvas />
         <img src={mcdonalds} className="store-page-banner" alt="store-banner" />
         <div className="store-page-name">
           <span>McDonald's (Marine Drive)</span>

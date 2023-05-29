@@ -1,7 +1,7 @@
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { TopNavigator } from "./components/topNavigator";
+import TopNavigator from "./components/topNavigator";
 import { MainPage } from "./components/mainPage";
 import { StorePage } from "./components/storePage";
 import { PAGE } from "./utils/constants";
