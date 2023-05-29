@@ -87,6 +87,10 @@
   font-size: 14px;
 }
 
+.item-modal {
+  user-select: none;
+}
+
 .item-modal-header {
   border: none;
 }
@@ -128,7 +132,6 @@
 .item-modal-update-count-container > span {
   width: 25px;
   height: 25px;
-  user-select: none;
   display: flex;
   align-items: center;
   justify-content: center;

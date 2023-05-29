@@ -38,6 +38,7 @@ const ItemModal = (props: {
       centered
       show={props.currentItem !== undefined}
       onHide={props.clearCurrentItem}
+      className="item-modal"
     >
       <Modal.Header closeButton className="item-modal-header"></Modal.Header>
       <Modal.Body>
