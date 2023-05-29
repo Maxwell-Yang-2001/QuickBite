@@ -4,16 +4,16 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { TopNavigator } from "./components/topNavigator";
 import { MainPage } from "./components/mainPage";
 import { StorePage } from "./components/storePage";
+import { PAGE } from "./utils/constants";
 
 const App = () => {
   return (
     <div className="App">
       <Router>
-        <TopNavigator />
         <Routes>
-          <Route path="/" element={<MainPage />} />
-          <Route path="/home" element={<MainPage />} />
-          <Route path="/store" element={<StorePage />} />
+          <Route path="/" element={<><TopNavigator page={PAGE.Home} /><MainPage /></>} />
+          <Route path="/home" element={<><TopNavigator page={PAGE.Home} /><MainPage /></>} />
+          <Route path="/store" element={<><TopNavigator page={PAGE.Store} /><StorePage /></>} />
         </Routes>
       </Router>
     </div>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   CartEmpty,
   CartFilled,
@@ -14,6 +14,7 @@ import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import { connect } from "react-redux";
 import { Dispatch, setUser } from "../../redux/action";
 import { Link } from "react-router-dom";
+import { PAGE } from "../../utils/constants";
 
 const Logo = () => {
   return (
@@ -26,9 +27,13 @@ const Logo = () => {
   );
 };
 
-const SearchBar = () => {
+const SearchBar = (props: { page: PAGE }) => {
   const [content, setContent] = useState("");
   const [focused, setFocused] = useState(false);
+
+  useEffect(() => {
+    setContent("");
+  }, [props.page]);
 
   return (
     <div
@@ -36,10 +41,14 @@ const SearchBar = () => {
         content ? "" : " empty"
       } ${focused ? " focused" : ""}`}
     >
-      <Search />
+      <Search
+        className={`clickable themed-content${content ? "" : " disabled"}`}
+      />
       <input
         type="text"
-        placeholder="Search for stores"
+        placeholder={
+          props.page === PAGE.Home ? "Search for Stores" : "Search for Items"
+        }
         onChange={(e) => {
           e.preventDefault();
           setContent(e.target.value);
@@ -61,6 +70,7 @@ const SearchBar = () => {
             setContent("");
           }
         }}
+        className="clickable themed-content"
       />
     </div>
   );
@@ -92,6 +102,40 @@ const RatingDropdown = () => {
   );
 };
 
+const PriceDropdown = () => {
+  const [priceRangeIndex, setPriceRangeIndex] = useState(0);
+  const priceRanges = [
+    "Any Price",
+    "Less than $5",
+    "$5 - 9.99",
+    "$10 - 14.99",
+    "$15 - 19.99",
+    "$20 - 24.99",
+    "Above $25",
+  ];
+
+  return (
+    <DropdownButton
+      as={ButtonGroup}
+      drop={"down-centered"}
+      title={priceRanges[priceRangeIndex]}
+      className="quick-bite-rating-dropdown"
+      variant="light"
+    >
+      <Dropdown.ItemText>Price Ranges</Dropdown.ItemText>
+      <Dropdown.Divider />
+      {priceRanges.map((priceRange, index) => (
+        <Dropdown.Item
+          key={`item-${index}`}
+          onClick={(_) => setPriceRangeIndex(index)}
+        >
+          <span>{priceRange}</span>
+        </Dropdown.Item>
+      ))}
+    </DropdownButton>
+  );
+};
+
 const mapStateToPersonButtonProps = (state: { user: string }) => ({
   user: state.user,
 });
@@ -111,6 +155,7 @@ const PersonButton = connect(
         onClick={() => {
           props.setUser("a");
         }}
+        className="clickable themed-content"
       >
         {props.user ? <PersonFilled /> : <PersonEmpty />}
         {props.user ?? "Log In / Sign up"}
@@ -121,19 +166,19 @@ const PersonButton = connect(
 
 const CartButton = (props: { empty: boolean }) => {
   return (
-    <QuickBgButton colored={false}>
+    <QuickBgButton colored={false} className="clickable themed-content">
       {props.empty ? <CartEmpty /> : <CartFilled />}
     </QuickBgButton>
   );
 };
 
-export const TopNavigator = () => {
+export const TopNavigator = (props: { page: PAGE }) => {
   return (
     <>
       <div className="top-navigator d-flex align-items-center">
         <Logo />
-        <SearchBar />
-        <RatingDropdown />
+        <SearchBar page={props.page} />
+        {props.page === PAGE.Home ? <RatingDropdown /> : <PriceDropdown />}
         <PersonButton />
         <CartButton empty />
       </div>

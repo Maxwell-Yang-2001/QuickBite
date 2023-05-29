@@ -23,7 +23,7 @@
   width: 30px;
   height: 30px;
   margin-right: 5px;
-  transition: transform 0.7s ease-in-out;
+  transition: transform .7s ease-in-out;
 }
 
 .logo svg:hover {
@@ -79,7 +79,7 @@
   border: 2px #e6e6e6 solid;
 }
 
-.top-navigator-search.empty > img:nth-child(3) {
+.top-navigator-search.empty > svg:nth-child(3) {
   visibility: hidden;
 }
 
@@ -100,13 +100,15 @@
 }
 
 .quick-bite-rating-dropdown {
-  min-width: 80px;
+  min-width: 150px;
 }
 
 .quick-bite-rating-dropdown > button {
   height: 40px;
   background-color: white;
   border: none;
+  display: flex;
+  align-items: center;
 }
 
 .quick-bite-rating-dropdown > button:hover {
@@ -116,6 +118,15 @@
 .quick-bite-rating-dropdown > button > :nth-child(1) {
   float: left;
   width: 50px;
+}
+
+.quick-bite-rating-dropdown > button::after {
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-right: 0;
+  margin-left: auto;
+  display: inline-flex;
+  float: right;
 }
 
 .quick-bite-rating-dropdown .dropdown-item:hover {

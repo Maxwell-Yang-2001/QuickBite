@@ -6,7 +6,7 @@
 .quick-bite-button {
   display: inline-block;
   background-color: white;
-  transition: background-color 0.2s;
+  transition: background-color .2s;
   height: 40px;
   display: flex;
   vertical-align: middle;
@@ -58,4 +58,17 @@
 
 .disabled:hover {
   cursor: not-allowed;
+}
+
+.clickable:not(.disabled):hover {
+  cursor: pointer;
+}
+
+.themed-content {
+  transition: fill .2s, color .2s, background-color .2s;
+}
+
+.themed-content:not(.disabled):hover, .themed-content:not(.disabled):hover svg {
+  color: #ff4000;
+  fill: #ff4000;
 }

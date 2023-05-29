@@ -48,7 +48,7 @@ const ItemModal = (props: {
               if (itemCount <= lower) return;
               setItemCount(itemCount - 1);
             }}
-            className={itemCount <= lower ? "disabled" : ""}
+            className={`clickable themed-content${itemCount <= lower ? " disabled" : ""}`}
           />
           <span>{itemCount}</span>
           <PlusCircle
@@ -56,7 +56,7 @@ const ItemModal = (props: {
               if (itemCount >= upper) return;
               setItemCount(itemCount + 1);
             }}
-            className={itemCount >= upper ? "disabled" : ""}
+            className={`clickable themed-content${itemCount >= upper ? " disabled" : ""}`}
           />
         </div>
         <Button>Add to cart - ${(unitPrice * itemCount).toFixed(2)}</Button>
