@@ -28,6 +28,16 @@ export const addToCart = (quantity: number) => (dispatch: Dispatch) => {
   });
 };
 
+export const removeFromCart = (itemId: string) => (dispatch: Dispatch) => {
+  dispatch({
+    type: "REMOVE_FROM_CART",
+    payload: {
+      itemId,
+    },
+  });
+};
+
+
 export const toggleCartOffcanvas = () => (dispatch: Dispatch) => {
   dispatch({
     type: "TOGGLE_CART_OFFCANVAS",

@@ -16,12 +16,12 @@ const mapDispatchToItemCardProps = (dispatch: Dispatch) => ({
 const ItemCard = connect(
   undefined,
   mapDispatchToItemCardProps
-)((props: { setCurrentItem: (currentItem: string) => void }) => (
+)((props: { itemId: string, setCurrentItem: (currentItem: string) => void }) => (
   <Col md={4} xl={2}>
-    <Card className="item-card" onClick={() => props.setCurrentItem("a")}>
+    <Card className="item-card" onClick={() => props.setCurrentItem(props.itemId)}>
       <Card.Img variant="top" src={mcdonalds} />
       <Card.Body>
-        <Card.Title>Big Mac</Card.Title>
+        <Card.Title>Big Mac-{props.itemId}</Card.Title>
         <Card.Text>$199.99</Card.Text>
       </Card.Body>
     </Card>
@@ -44,15 +44,15 @@ const Category = (props: { title: string }) => (
     <span>{props.title}</span>
     <Container>
       <Row className="g-4">
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
-        <ItemCard />
+        <ItemCard itemId="a" />
+        <ItemCard itemId="b" />
+        <ItemCard itemId="c" />
+        <ItemCard itemId="d" />
+        <ItemCard itemId="e" />
+        <ItemCard itemId="f" />
+        <ItemCard itemId="g" />
+        <ItemCard itemId="h" />
+        <ItemCard itemId="i" />
       </Row>
     </Container>
   </div>

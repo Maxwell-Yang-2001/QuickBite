@@ -64,8 +64,8 @@
   cursor: pointer;
 }
 
-.themed-content {
-  transition: fill .2s, color .2s, background-color .2s;
+.themed-content, .themed-content svg {
+  transition: fill .1s, color .2s, background-color .2s;
 }
 
 .themed-content:not(.disabled):hover, .themed-content:not(.disabled):hover svg {

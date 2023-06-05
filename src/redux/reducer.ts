@@ -2,17 +2,19 @@ import { defaultState } from "./state";
 
 export default function reducer(state = defaultState, action: any) {
   switch (action.type) {
-    case "SET_USER":
+    case "SET_USER": {
       return {
         ...state,
         user: action.payload.user,
       };
-    case "SET_CURRENT_ITEM":
+    }
+    case "SET_CURRENT_ITEM": {
       return {
         ...state,
         currentItem: action.payload.currentItem,
       };
-    case "ADD_TO_CART":
+    }
+    case "ADD_TO_CART": {
       const newCart = { ...state.cart };
       if (state.currentItem) {
         if (state.currentItem in state.cart) {
@@ -25,11 +27,22 @@ export default function reducer(state = defaultState, action: any) {
         ...state,
         cart: newCart,
       };
-    case "TOGGLE_CART_OFFCANVAS":
+    }
+    case "REMOVE_FROM_CART": {
+      const newCart = { ...state.cart };
+      console.log(newCart);
+      delete newCart[action.payload.itemId];
+      return {
+        ...state,
+        cart: newCart,
+      };
+    }
+    case "TOGGLE_CART_OFFCANVAS": {
       return {
         ...state,
         cartOffcanvasOpen: !state.cartOffcanvasOpen,
       };
+    }
     default:
       return state;
   }
