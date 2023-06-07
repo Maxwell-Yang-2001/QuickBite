@@ -40,11 +40,12 @@ a.cart-offcanvas-title:hover {
 
 .cart-offcanvas-item:hover {
     background-color: #e6e6e6;
+    cursor: pointer;
 }
 
 .cart-offcanvas-item > div {
     display: flex;
-    padding: 20px 5px;
+    padding: 20px 0;
     justify-content: space-between;
 }
 

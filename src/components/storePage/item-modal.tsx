@@ -84,6 +84,4 @@ const ItemModal = (props: {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ItemModal);
-function setContent(arg0: string) {
-  throw new Error("Function not implemented.");
-}
+

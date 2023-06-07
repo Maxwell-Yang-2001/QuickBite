@@ -4,6 +4,8 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 import mcdonalds from "../../assets/mcdonalds.jpeg";
 import "./main-page.css";
 import { Link } from "react-router-dom";
+import TopNavigator from "../topNavigator";
+import { PAGE } from "../../utils/constants";
 
 const StoreCard = () => (
   <Col xs={12} md={6} xl={4}>
@@ -21,6 +23,8 @@ const StoreCard = () => (
 );
 
 export const MainPage = () => (
+  <>
+  <TopNavigator page={PAGE.Home} />
   <div className="page-container">
     <Container>
       <Row className="g-4">
@@ -36,4 +40,5 @@ export const MainPage = () => (
       </Row>
     </Container>
   </div>
+  </>
 );

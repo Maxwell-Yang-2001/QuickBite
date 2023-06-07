@@ -57,7 +57,7 @@ const CartOffcanvas = (props: {
           </>
         ) : (
           <>
-            <Link to="/store" className="cart-offcanvas-title">
+            <Link to="/store" className="cart-offcanvas-title" onClick={props.toggleCartOffcanvas}>
               Mcdonald's (Marine Drive)
             </Link>
             <p className="cart-offcanvas-subtitle">

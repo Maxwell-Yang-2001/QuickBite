@@ -15,6 +15,7 @@ import { connect } from "react-redux";
 import { Dispatch, setUser, toggleCartOffcanvas } from "../../redux/action";
 import { Link } from "react-router-dom";
 import { PAGE } from "../../utils/constants";
+import CartOffcanvas from "../cartOffcanvas";
 
 const Logo = () => {
   return (
@@ -136,22 +137,15 @@ const PriceDropdown = () => {
   );
 };
 
-const PersonButton = (props: {
-  user?: string;
-  setUser: (user: string) => void;
-}) => {
+const PersonButton = (props: { user?: string }) => {
   return (
     <div className="top-navigator-user">
-      <QuickBgButton
-        colored={false}
-        onClick={() => {
-          props.setUser("a");
-        }}
-        className="clickable themed-content"
-      >
-        {props.user ? <PersonFilled /> : <PersonEmpty />}
-        {props.user ?? "Log In / Sign up"}
-      </QuickBgButton>
+      <Link to="/account" className="invisible-link">
+        <QuickBgButton colored={false} className="clickable themed-content">
+          {props.user ? <PersonFilled /> : <PersonEmpty />}
+          {props.user ?? "Log In / Sign up"}
+        </QuickBgButton>
+      </Link>
     </div>
   );
 };
@@ -177,7 +171,6 @@ const mapStateToProps = (state: {
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setUser: (user: string) => dispatch(setUser(user)),
   toggleCartOffcanvas: () => dispatch(toggleCartOffcanvas()),
 });
 
@@ -185,22 +178,26 @@ const TopNavigator = (props: {
   page: PAGE;
   user?: string;
   cart: { [itemId: string]: number };
-  setUser: (user: string) => void;
   toggleCartOffcanvas: () => void;
 }) => {
   return (
     <>
       <div className="top-navigator d-flex align-items-center">
         <Logo />
-        <SearchBar page={props.page} />
-        {props.page === PAGE.Home ? <RatingDropdown /> : <PriceDropdown />}
-        <PersonButton {...props} />
+        {props.page !== PAGE.Account && (
+          <>
+            <SearchBar page={props.page} />
+            {props.page === PAGE.Home ? <RatingDropdown /> : <PriceDropdown />}
+            <PersonButton {...props} />
+          </>
+        )}
         <CartButton
           empty={Object.keys(props.cart).length === 0}
           toggle={props.toggleCartOffcanvas}
         />
       </div>
       <HorizontalSeparator verticallySpaced={false} />
+      <CartOffcanvas />
     </>
   );
 };
