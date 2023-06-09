@@ -72,3 +72,10 @@
   color: #ff4000;
   fill: #ff4000;
 }
+
+.invisible-link,
+.invisible-link:hover {
+  text-decoration: inherit;
+  color: inherit;
+  width: fit-content;
+}

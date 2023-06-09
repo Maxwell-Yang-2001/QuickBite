@@ -20,7 +20,7 @@ import CartOffcanvas from "../cartOffcanvas";
 const Logo = () => {
   return (
     <div className="col">
-      <Link to="/" className="logo invisible-link">
+      <Link to="/" className="top-navigator-logo invisible-link">
         <LogoIcon />
         <span>QuickBite</span>
       </Link>

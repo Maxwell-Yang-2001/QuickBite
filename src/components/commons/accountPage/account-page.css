@@ -1,0 +1,57 @@
+.login-page-ad-container, .login-page-login-container {
+    width: 50%;
+    height: 100%;
+    position: fixed;
+}
+
+.login-page-ad-container {
+    left: 0;
+    background-color: #ff4000;
+}
+
+.login-page-login-container {
+    right: 0;
+}
+
+.login-page-ad-content-wrapper {
+    margin-left: auto;
+    margin-right: auto;
+    user-select: none;
+}
+
+.login-page-ad-content-wrapper span {
+    color: white;
+    font-size: 80px;
+    font-weight: 700;
+    text-shadow: 5px 5px black;
+    transition: text-shadow .2s;
+}
+
+.login-page-ad-content-wrapper span:hover {
+    text-shadow: 7px 7px #222222;
+}
+
+.login-page-ad-content-wrapper svg {
+    width: 80px;
+    height: 80px;
+    fill: white;
+    margin-right: 30px;
+    transition: transform .7s ease-in-out;
+}
+
+.login-page-ad-content-wrapper svg:hover {
+    transform: rotate(180deg);
+  }
+
+.login-page-ad-content-wrapper p {
+    font-size: 30px;
+    color: white;
+    margin-top: 100px;
+    font-style: italic;
+    text-shadow: 2px 2px black;
+    transition: text-shadow .2s;
+}
+
+.login-page-ad-content-wrapper p:hover {
+    text-shadow: 3px 3px #222222;
+}

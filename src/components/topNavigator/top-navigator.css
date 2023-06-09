@@ -6,7 +6,7 @@
   padding: 0 20px;
 }
 
-.logo {
+.top-navigator-logo {
   font-size: 30px;
   font-weight: 700;
   height: 45px;
@@ -14,19 +14,19 @@
   align-items: center;
 }
 
-.logo span {
+.top-navigator-logo span {
   animation: rainbow 2.5s linear;
   animation-iteration-count: infinite;
 }
 
-.logo svg {
+.top-navigator-logo svg {
   width: 30px;
   height: 30px;
   margin-right: 5px;
   transition: transform .7s ease-in-out;
 }
 
-.logo svg:hover {
+.top-navigator-logo svg:hover {
   transform: rotate(180deg);
 }
 
