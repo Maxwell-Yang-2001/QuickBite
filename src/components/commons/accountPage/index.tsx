@@ -4,7 +4,7 @@ import { State } from "../../../redux/state";
 import "./account-page.css";
 import TopNavigator from "../../topNavigator";
 import { PAGE } from "../../../utils/constants";
-import { LoginPage } from "./loginPage";
+import { LoginPage } from "./login-page";
 import { ProfilePage } from "./profilePage";
 
 const mapStateToProps = (state: State) => ({
