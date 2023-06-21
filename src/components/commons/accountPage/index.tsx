@@ -1,11 +1,11 @@
 import { connect } from "react-redux";
 import { Dispatch, setCurrentItem } from "../../../redux/action";
-import { State } from "../../../redux/state";
+import { State, User } from "../../../redux/state";
 import "./account-page.css";
 import TopNavigator from "../../topNavigator";
 import { PAGE } from "../../../utils/constants";
 import { LoginPage } from "./login-page";
-import { ProfilePage } from "./profilePage";
+import { ProfilePage } from "./profile-page";
 
 const mapStateToProps = (state: State) => ({
   user: state.user,
@@ -19,7 +19,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 export const AccountPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)((props: { user?: string }) =>
+)((props: { user?: User }) =>
   props.user ? (
     <>
       <TopNavigator page={PAGE.Account} />

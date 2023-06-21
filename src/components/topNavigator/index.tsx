@@ -12,10 +12,11 @@ import "./top-navigator.css";
 import { QuickBgButton, HorizontalSeparator, Star } from "../commons";
 import { ButtonGroup, Dropdown, DropdownButton } from "react-bootstrap";
 import { connect } from "react-redux";
-import { Dispatch, setUser, toggleCartOffcanvas } from "../../redux/action";
+import { Dispatch, toggleCartOffcanvas } from "../../redux/action";
 import { Link } from "react-router-dom";
 import { PAGE } from "../../utils/constants";
 import CartOffcanvas from "../cartOffcanvas";
+import { User } from "../../redux/state";
 
 const Logo = () => {
   return (
@@ -137,13 +138,13 @@ const PriceDropdown = () => {
   );
 };
 
-const PersonButton = (props: { user?: string }) => {
+const PersonButton = (props: { user?: User }) => {
   return (
     <div className="top-navigator-user">
       <Link to="/account" className="invisible-link">
         <QuickBgButton colored={false} className="clickable themed-content">
           {props.user ? <PersonFilled /> : <PersonEmpty />}
-          {props.user ?? "Log In / Sign up"}
+          {props.user ? `Hi, ${props.user.firstName}` : "Log In / Sign up"}
         </QuickBgButton>
       </Link>
     </div>
@@ -163,7 +164,7 @@ const CartButton = (props: { empty: boolean; toggle: () => void }) => {
 };
 
 const mapStateToProps = (state: {
-  user?: string;
+  user?: User;
   cart: { [itemId: string]: number };
 }) => ({
   user: state.user,
@@ -176,7 +177,7 @@ const mapDispatchToProps = (dispatch: Dispatch) => ({
 
 const TopNavigator = (props: {
   page: PAGE;
-  user?: string;
+  user?: User;
   cart: { [itemId: string]: number };
   toggleCartOffcanvas: () => void;
 }) => {

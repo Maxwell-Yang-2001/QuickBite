@@ -1,27 +1,27 @@
 import { Link, redirect, useNavigate } from "react-router-dom";
 import { Logo } from "../../../assets";
 import { Button, Form, Tab, Tabs } from "react-bootstrap";
-import { State } from "../../../redux/state";
+import { State, User, defaultUser } from "../../../redux/state";
 import { Dispatch, setUser } from "../../../redux/action";
 import { connect } from "react-redux";
 
-export const LoginWindow = (props: { setUser: (user: string) => void }) => {
+export const LoginWindow = (props: { setUser: (user: User) => void }) => {
   const navigate = useNavigate();
 
   return (
     <>
       <Form.Group className="mb-3" controlId="login.email">
         <Form.Label>Email address</Form.Label>
-        <Form.Control size="lg" type="email" placeholder="name@example.com" />
+        <Form.Control size="lg" type="email" placeholder="name@example.com"/>
       </Form.Group>
       <Form.Group className="mb-3" controlId="login.password">
         <Form.Label>Password</Form.Label>
-        <Form.Control size="lg" type="text" />
+        <Form.Control size="lg" type="password" />
       </Form.Group>
       <Button
         className="quick-bite-button quick-bite-bg"
         onClick={() => {
-          props.setUser("a");
+          props.setUser(defaultUser);
           navigate("/");
         }}
       >
@@ -54,13 +54,13 @@ const mapStateToProps = (state: State) => ({
 });
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
-  setUser: (user: string) => dispatch(setUser(user)),
+  setUser: (user: User) => dispatch(setUser(user)),
 });
 
 export const LoginPage = connect(
   mapStateToProps,
   mapDispatchToProps
-)((props: { user?: string; setUser: (user: string) => void }) => (
+)((props: { user?: User; setUser: (user: User) => void }) => (
   <>
     <div className="login-page-ad-container d-flex align-items-center">
       <div className="login-page-ad-content-wrapper">

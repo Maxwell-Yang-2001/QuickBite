@@ -1,6 +1,8 @@
+import { User } from "./state";
+
 export type Dispatch = (_: any) => void;
 
-export const setUser = (user: string) => (dispatch: Dispatch) => {
+export const setUser = (user: User) => (dispatch: Dispatch) => {
   dispatch({
     type: "SET_USER",
     payload: {
