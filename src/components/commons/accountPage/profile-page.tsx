@@ -1,22 +1,10 @@
 import { connect } from "react-redux";
 import { Dispatch, setCurrentItem } from "../../../redux/action";
 import { State, User } from "../../../redux/state";
-import { Button, Col, Form, Row } from "react-bootstrap";
+import { Button, Col, Form, Row, Toast, ToastContainer } from "react-bootstrap";
 import { useState } from "react";
 import { Edit, Save, X } from "../../../assets";
-import { QuickBgButton } from "..";
-
-const EditButton = (props: { onClick: () => void }) => {
-  return (
-    <QuickBgButton
-      colored={false}
-      onClick={props.onClick}
-      className="clickable themed-content"
-    >
-      <Edit />
-    </QuickBgButton>
-  );
-};
+import { QuickBgButton, SnackBar } from "..";
 
 const mapStateToProps = (state: State) => ({
   user: state.user,
@@ -38,14 +26,18 @@ export const ProfilePage = connect(
   const [lastName, setLastName] = useState(props.user.lastName);
   const [emailAddress, setEmailAddress] = useState(props.user.emailAddress);
   const [phoneNumber, setPhoneNumber] = useState(props.user.phoneNumber);
+  const [showMessage, setShowMessage] = useState(false);
 
   return (
     <div className="page-container profile-page-container">
+      <SnackBar show={showMessage} setShow={setShowMessage} type="success">
+        Your basic information has been updated.
+      </SnackBar>
       <div className="profile-page-title">
         <span>Profile</span>
       </div>
       <div className="profile-page-subtitle d-flex align-items-center">
-        <span>Basic Info</span>
+        <span>Basic Information</span>
         <div className="profile-page-subtitle-button-group">
           {editing ? (
             <>
@@ -54,6 +46,7 @@ export const ProfilePage = connect(
                 className="clickable themed-content"
                 onClick={() => {
                   setEditing(false);
+                  setShowMessage(true);
                 }}
               >
                 <Save />

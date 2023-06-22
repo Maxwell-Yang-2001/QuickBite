@@ -107,6 +107,7 @@
 .profile-page-subtitle-button-group {
   display: flex;
   margin-left: auto;
+  margin-right: -5px;
 }
 
 .profile-page-form .col-form-label {
