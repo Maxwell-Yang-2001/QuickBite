@@ -113,3 +113,20 @@
 .profile-page-form .col-form-label {
   text-align: end;
 }
+
+.profile-page-past-order-entry {
+  background-color: white;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.profile-page-past-order-entry:hover {
+  background-color: #e6e6e6;
+}
+
+.profile-page-past-order-entry img {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 2px;
+}

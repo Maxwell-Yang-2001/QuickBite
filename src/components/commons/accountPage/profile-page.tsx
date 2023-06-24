@@ -1,10 +1,46 @@
 import { connect } from "react-redux";
 import { Dispatch, setCurrentItem } from "../../../redux/action";
-import { State, User } from "../../../redux/state";
-import { Button, Col, Form, Row, Toast, ToastContainer } from "react-bootstrap";
+import { Order, State, User } from "../../../redux/state";
+import { Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
-import { Edit, Save, X } from "../../../assets";
-import { QuickBgButton, SnackBar } from "..";
+import { Edit, List, Save, X } from "../../../assets";
+import mcdonalds from "../../../assets/mcdonalds.jpeg";
+import { HorizontalSeparator, QuickBgButton, SnackBar } from "..";
+
+const PROFILE_PAGE_MAX_PAST_ORDERS = 3;
+
+const PastOrders = (props: { pastOrders?: Order[] }) => {
+  if (!props.pastOrders) {
+    return <div>No past orders found. Feel free to look around!</div>;
+  }
+  return (
+    <div>
+      {props.pastOrders
+        .slice(0, PROFILE_PAGE_MAX_PAST_ORDERS)
+        .map((order, i) => (
+          <Row
+            key={`past-order-${i}`}
+            className="profile-page-past-order-entry d-flex align-items-center"
+          >
+            <Col xs={3}>
+              <img src={mcdonalds} alt="store" />
+            </Col>
+            <Col xs={3}>
+              <strong>McDonald's (Marine Drive)</strong>
+            </Col>
+            <Col xs={3}>
+              <span>{order.time}</span>
+            </Col>
+            <Col xs={3}>
+              <span>{`${(order.extraCharge + order.tip).toFixed(2)} ${
+                order.currency
+              }`}</span>
+            </Col>
+          </Row>
+        ))}
+    </div>
+  );
+};
 
 const mapStateToProps = (state: State) => ({
   user: state.user,
@@ -106,7 +142,7 @@ export const ProfilePage = connect(
           <Col sm={6}>
             <Form.Label>Phone Number</Form.Label>
             <Form.Control
-              type="email"
+              type="number"
               placeholder="123-456-7890"
               value={phoneNumber}
               disabled={!editing}
@@ -150,9 +186,21 @@ export const ProfilePage = connect(
           </Col>
         </Form.Group>
       </Form>
-      <div className="profile-page-subtitle">
+      <HorizontalSeparator verticallySpaced />
+      <div className="profile-page-subtitle d-flex align-items-center">
         <span>Past Orders</span>
+        {props.user?.pastOrders &&
+        props.user.pastOrders.length > PROFILE_PAGE_MAX_PAST_ORDERS ? (
+          <div className="profile-page-subtitle-button-group">
+            <QuickBgButton colored={false} className="clickable themed-content">
+              <List />
+            </QuickBgButton>
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
+      <PastOrders pastOrders={props.user?.pastOrders} />
     </div>
   );
 });

@@ -45,7 +45,7 @@ a.cart-offcanvas-title:hover {
 
 .cart-offcanvas-item > div {
     display: flex;
-    padding: 20px 0;
+    padding: 20px;
     justify-content: space-between;
 }
 
