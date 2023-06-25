@@ -1,11 +1,12 @@
 import { connect } from "react-redux";
-import { Dispatch, setCurrentItem } from "../../../redux/action";
-import { Order, State, User } from "../../../redux/state";
+import { Dispatch, setCurrentItem } from "../../redux/action";
+import { Order, State, User } from "../../redux/state";
 import { Col, Form, Row } from "react-bootstrap";
 import { useState } from "react";
-import { Edit, List, Save, X } from "../../../assets";
-import mcdonalds from "../../../assets/mcdonalds.jpeg";
-import { HorizontalSeparator, QuickBgButton, SnackBar } from "..";
+import { Edit, List, Save, X } from "../../assets";
+import mcdonalds from "../../assets/mcdonalds.jpeg";
+import { HorizontalSeparator, QuickBgButton, SnackBar } from "../commons";
+import { Link } from "react-router-dom";
 
 const PROFILE_PAGE_MAX_PAST_ORDERS = 3;
 
@@ -190,15 +191,18 @@ export const ProfilePage = connect(
       <div className="profile-page-subtitle d-flex align-items-center">
         <span>Past Orders</span>
         {props.user?.pastOrders &&
-        props.user.pastOrders.length > PROFILE_PAGE_MAX_PAST_ORDERS ? (
-          <div className="profile-page-subtitle-button-group">
-            <QuickBgButton colored={false} className="clickable themed-content">
-              <List />
-            </QuickBgButton>
-          </div>
-        ) : (
-          <></>
-        )}
+          props.user.pastOrders.length > PROFILE_PAGE_MAX_PAST_ORDERS && (
+            <div className="profile-page-subtitle-button-group">
+              <Link to="/account/past-orders" className="invisible-link">
+                <QuickBgButton
+                  colored={false}
+                  className="clickable themed-content"
+                >
+                  <List />
+                </QuickBgButton>
+              </Link>
+            </div>
+          )}
       </div>
       <PastOrders pastOrders={props.user?.pastOrders} />
     </div>

@@ -1,8 +1,8 @@
 import { Link, redirect, useNavigate } from "react-router-dom";
-import { Logo } from "../../../assets";
+import { Logo } from "../../assets";
 import { Button, Form, Tab, Tabs } from "react-bootstrap";
-import { State, User, defaultUser } from "../../../redux/state";
-import { Dispatch, setUser } from "../../../redux/action";
+import { State, User, defaultUser } from "../../redux/state";
+import { Dispatch, setUser } from "../../redux/action";
 import { connect } from "react-redux";
 
 export const LoginWindow = (props: { setUser: (user: User) => void }) => {

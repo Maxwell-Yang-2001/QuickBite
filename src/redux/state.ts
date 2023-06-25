@@ -88,8 +88,8 @@ export const defaultUser: User = {
 };
 
 export const defaultState: State = {
-  user: defaultUser,
-  // user: undefined,
+  // user: defaultUser,
+  user: undefined,
   currentItem: undefined,
   cart: {},
   cartOffcanvasOpen: false,

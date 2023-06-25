@@ -185,7 +185,7 @@ const TopNavigator = (props: {
     <>
       <div className="top-navigator d-flex align-items-center">
         <Logo />
-        {props.page !== PAGE.Account && (
+        {props.page !== PAGE.Account && props.page !== PAGE.PastOrders && (
           <>
             <SearchBar page={props.page} />
             {props.page === PAGE.Home ? <RatingDropdown /> : <PriceDropdown />}
