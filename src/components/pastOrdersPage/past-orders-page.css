@@ -1,0 +1,47 @@
+.past-orders-page-title {
+  font-size: 40px;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+.past-orders-page-entry {
+  padding: 20px 0;
+  margin: 0;
+}
+
+.past-orders-page-entry:not(:nth-child(1)) {
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.past-orders-page-entry > img {
+  width: 300px;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 20px;
+}
+
+.past-orders-page-entry > div {
+  display: inline-block;
+}
+
+.past-orders-page-entry-store {
+    font-size: 25px;
+    font-weight: 600;
+}
+
+.past-orders-page-entry-time {
+    color: #888888;
+}
+
+.past-orders-page-entry-buttons {
+    margin-left: auto;
+    width: 200px;
+}
+
+.past-orders-page-entry-buttons button {
+    width: 100%;
+    margin-bottom: 10px;
+    font-weight: 600;
+    justify-content: center;
+}
