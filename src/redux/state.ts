@@ -31,6 +31,7 @@ export type Order = {
   storeId: string;
   content?: OrderItem[];
   extraCharge: number;
+  deliveryFee: number;
   tip: number;
   currency: string;
   time: string;
@@ -48,7 +49,7 @@ export type State = {
 };
 
 const defaultOrderItem: OrderItem = {
-  name: "Big-mac",
+  name: "Big Mac",
   unitPrice: 199.99,
   amount: 2,
   image: "dummy-image",
@@ -63,8 +64,14 @@ const defaultOrder: Order = {
     defaultOrderItem,
     defaultOrderItem,
     defaultOrderItem,
+    defaultOrderItem,
+    defaultOrderItem,
+    defaultOrderItem,
+    defaultOrderItem,
+    defaultOrderItem,
   ],
   extraCharge: 30,
+  deliveryFee: 20,
   tip: 40,
   currency: "CAD",
   time: "2:05 p.m. PDT, July 2nd, 2021",
@@ -84,7 +91,7 @@ export const defaultUser: User = {
     province: "BC",
     postalCode: "V1V 1V1",
   },
-  pastOrders: [defaultOrder, defaultOrder, defaultOrder, defaultOrder],
+  pastOrders: [defaultOrder, defaultOrder, defaultOrder, defaultOrder, defaultOrder, defaultOrder],
 };
 
 export const defaultState: State = {

@@ -26,22 +26,87 @@
 }
 
 .past-orders-page-entry-store {
-    font-size: 25px;
-    font-weight: 600;
+  font-size: 25px;
+  font-weight: 600;
 }
 
 .past-orders-page-entry-time {
-    color: #888888;
+  color: #888888;
 }
 
 .past-orders-page-entry-buttons {
-    margin-left: auto;
-    width: 200px;
+  margin-left: auto;
+  width: 250px;
 }
 
 .past-orders-page-entry-buttons button {
-    width: 100%;
-    margin-bottom: 10px;
-    font-weight: 600;
-    justify-content: center;
+  width: 100%;
+  margin-bottom: 10px;
+  font-weight: 600;
+  justify-content: center;
+}
+
+.past-orders-page-entry-buttons svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  margin-left: 0;
+}
+
+.modal-body {
+  max-height: calc(100vh - 150px);
+  overflow-y: auto;
+}
+
+.receipt-modal-dialog {
+  width: 600px;
+}
+
+.receipt-modal-title {
+  font-size: 22px;
+}
+
+.receipt-modal-info {
+  font-size: 15px;
+  color: #222222;
+}
+
+.receipt-modal-items, .receipt-modal-prices, .receipt-modal-total {
+  width: 100%;
+}
+
+.receipt-modal-items tr, .receipt-modal-prices tr, .receipt-modal-total tr {
+  vertical-align: middle;
+  height: 40px;
+}
+
+.receipt-modal-item-amount {
+  width: 40px;
+}
+
+.receipt-modal-item-amount > span {
+  width: 28px;
+  height: 28px;
+  text-align: center;
+  display: inline-block;
+  line-height: 26px;
+  vertical-align: middle;
+  border: 1px #888888 solid;
+}
+
+.receipt-modal-item-name {
+  width: calc(100% - 160px);
+}
+
+.receipt-modal-item-price {
+  width: 130px;
+  text-align: right;
+}
+
+.receipt-modal-prices td:last-child, .receipt-modal-total td:last-child {
+  text-align: right;
+}
+
+.receipt-modal-total {
+  font-weight: 700;
 }

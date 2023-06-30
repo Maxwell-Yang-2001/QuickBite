@@ -1,13 +1,15 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { PAGE } from "../../utils/constants";
 import TopNavigator from "../topNavigator";
-import { State, User } from "../../redux/state";
+import { Order, State, User } from "../../redux/state";
 import { connect } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import "./past-orders-page.css";
 import mcdonalds from "../../assets/mcdonalds.jpeg";
 import { Button, Col, Row } from "react-bootstrap";
 import { QuickBgButton } from "../commons";
+import { DoorOpen, Receipt, Star } from "../../assets";
+import ReceiptModal from "./receipt-modal";
 
 const mapStateToProps = (state: State) => ({
   user: state.user,
@@ -22,6 +24,9 @@ export const PastOrdersPage = connect(
   undefined
 )((props: PastOrdersPageProps) => {
   const navigate = useNavigate();
+  const [receiptOrder, setReceiptOrder] = useState<Order | undefined>(
+    undefined
+  );
 
   useEffect(() => {
     if (!props.user) {
@@ -33,6 +38,7 @@ export const PastOrdersPage = connect(
     <>
       <TopNavigator page={PAGE.PastOrders} />
       <div className="page-container past-orders-page-container">
+        <ReceiptModal order={receiptOrder} setOrder={setReceiptOrder} />
         <div className="past-orders-page-title">
           <span>Past Orders</span>
         </div>
@@ -54,17 +60,20 @@ export const PastOrdersPage = connect(
                     </p>
                   </div>
                   <div className="past-orders-page-entry-buttons">
-                    <Button className="quick-bite-button quick-bite-bg">
-                      View Receipt
+                    <Button
+                      className="quick-bite-button quick-bite-bg"
+                      onClick={() => setReceiptOrder(order)}
+                    >
+                      <Receipt /> <span>View Receipt</span>
                     </Button>
                     <Link to="/store" className="invisible-link">
                       <Button className="quick-bite-button quick-bite-bg">
-                        View Store
+                        <DoorOpen /> <span>View Store</span>
                       </Button>
                     </Link>
-                    <Button className="quick-bite-button quick-bite-bg">
-                      Rate Your Order
-                    </Button>
+                    {/* <Button className="quick-bite-button quick-bite-bg">
+                      <Star /> <span>Rate Your Order</span>
+                    </Button> */}
                   </div>
                 </div>
               </React.Fragment>
