@@ -23,6 +23,33 @@ export class DDBStack extends cdk.Stack {
       partitionKey: { name: "id", type: AttributeType.STRING },
     });
 
+    tableName = `${APP_PREFIX}-Orders-${stage}`;
+
+    const ordersTable = new Table(this, tableName, {
+      tableName,
+      billingMode: BillingMode.PAY_PER_REQUEST,
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+      partitionKey: { name: "id", type: AttributeType.STRING },
+    });
+
+    tableName = `${APP_PREFIX}-Stores-${stage}`;
+
+    const storesTable = new Table(this, tableName, {
+      tableName,
+      billingMode: BillingMode.PAY_PER_REQUEST,
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+      partitionKey: { name: "id", type: AttributeType.STRING },
+    });
+
+    tableName = `${APP_PREFIX}-Drivers-${stage}`;
+
+    const driversTable = new Table(this, tableName, {
+      tableName,
+      billingMode: BillingMode.PAY_PER_REQUEST,
+      removalPolicy: cdk.RemovalPolicy.RETAIN,
+      partitionKey: { name: "id", type: AttributeType.STRING },
+    });
+
     const roleName = `${APP_PREFIX}-DDBStack-Accessor-${stage}`;
 
     // create an accessor role that can access all tables
@@ -41,7 +68,12 @@ export class DDBStack extends cdk.Stack {
                 "dynamodb:UpdateItem",
                 "dynamodb:Query",
               ],
-              Resource: [customersTable.tableArn],
+              Resource: [
+                customersTable.tableArn,
+                ordersTable.tableArn,
+                storesTable.tableArn,
+                driversTable.tableArn,
+              ],
             }),
           ],
         }),
