@@ -2,18 +2,16 @@ import * as cdk from "aws-cdk-lib";
 import { AttributeType, BillingMode, Table } from "aws-cdk-lib/aws-dynamodb";
 import { Construct } from "constructs";
 import { APP_PREFIX } from "../common";
-import {
-  AccountPrincipal,
-  PolicyDocument,
-  PolicyStatement,
-  Role,
-} from "aws-cdk-lib/aws-iam";
+import { Bucket, BucketAccessControl } from "aws-cdk-lib/aws-s3";
+import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
+import { Code, Function, Runtime } from "aws-cdk-lib/aws-lambda";
 
 export class DDBStack extends cdk.Stack {
   constructor(scope: Construct, props: cdk.StackProps, stage: string) {
     super(scope, `${APP_PREFIX}-DDBStack-${stage}`, props);
 
-    // create each table
+    // DynamoDB tables
+
     let tableName = `${APP_PREFIX}-Customers-${stage}`;
 
     const customersTable = new Table(this, tableName, {
@@ -50,34 +48,51 @@ export class DDBStack extends cdk.Stack {
       partitionKey: { name: "id", type: AttributeType.STRING },
     });
 
-    const roleName = `${APP_PREFIX}-DDBStack-Accessor-${stage}`;
+    // S3 Bucket (1 bucket containing initial data for all tables)
 
-    // create an accessor role that can access all tables
-    new Role(this, roleName, {
-      assumedBy: new AccountPrincipal(props.env?.account),
-      roleName,
-      inlinePolicies: {
-        accessorPolicy: new PolicyDocument({
-          statements: [
-            PolicyStatement.fromJson({
-              Sid: "DDBAccessor",
-              Effect: "Allow",
-              Action: [
-                "dynamodb:PutItem",
-                "dynamodb:GetItem",
-                "dynamodb:UpdateItem",
-                "dynamodb:Query",
-              ],
-              Resource: [
-                customersTable.tableArn,
-                ordersTable.tableArn,
-                storesTable.tableArn,
-                driversTable.tableArn,
-              ],
-            }),
-          ],
-        }),
-      },
+    const bucketName = `${APP_PREFIX}-DDB-Initial-Data-Bucket-${stage}`;
+
+    const bucket = new Bucket(this, bucketName, {
+      bucketName: bucketName.toLowerCase(),
+      publicReadAccess: false,
+      removalPolicy: cdk.RemovalPolicy.DESTROY,
+      accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
     });
+
+    new BucketDeployment(
+      this,
+      `${APP_PREFIX}-DDB-Initial-Data-Bucket-Deployment-${stage}`,
+      {
+        sources: [Source.asset("../ddb")],
+        destinationBucket: bucket,
+      }
+    );
+
+    // Lambda
+
+    let environment: { [key: string]: string } = {
+      BUCKET_NAME: bucketName.toLowerCase(),
+    };
+    if (props.env?.region) {
+      environment.REGION = props.env?.region;
+    }
+
+    const initiator = new Function(
+      this,
+      `${APP_PREFIX}-DDB-Initiator-${stage}`,
+      {
+        runtime: Runtime.NODEJS_18_X,
+        code: Code.fromAsset("../lambda/src"),
+        handler: "ddb-initiator.main",
+        environment,
+      }
+    );
+
+    customersTable.grantWriteData(initiator);
+    ordersTable.grantWriteData(initiator);
+    storesTable.grantWriteData(initiator);
+    driversTable.grantWriteData(initiator);
+
+    bucket.grantRead(initiator);
   }
 }
