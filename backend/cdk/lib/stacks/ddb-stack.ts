@@ -7,12 +7,12 @@ import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import { Code, Function, Runtime } from "aws-cdk-lib/aws-lambda";
 
 export class DDBStack extends cdk.Stack {
-  constructor(scope: Construct, props: cdk.StackProps, stage: string) {
-    super(scope, `${APP_PREFIX}-DDBStack-${stage}`, props);
+  constructor(scope: Construct, props: cdk.StackProps) {
+    super(scope, `${APP_PREFIX}-DDBStack`, props);
 
     // DynamoDB tables
 
-    let tableName = `${APP_PREFIX}-Customers-${stage}`;
+    let tableName = `${APP_PREFIX}-Customers`;
 
     const customersTable = new Table(this, tableName, {
       tableName,
@@ -21,7 +21,7 @@ export class DDBStack extends cdk.Stack {
       partitionKey: { name: "id", type: AttributeType.STRING },
     });
 
-    tableName = `${APP_PREFIX}-Orders-${stage}`;
+    tableName = `${APP_PREFIX}-Orders`;
 
     const ordersTable = new Table(this, tableName, {
       tableName,
@@ -30,7 +30,7 @@ export class DDBStack extends cdk.Stack {
       partitionKey: { name: "id", type: AttributeType.STRING },
     });
 
-    tableName = `${APP_PREFIX}-Stores-${stage}`;
+    tableName = `${APP_PREFIX}-Stores`;
 
     const storesTable = new Table(this, tableName, {
       tableName,
@@ -39,7 +39,7 @@ export class DDBStack extends cdk.Stack {
       partitionKey: { name: "id", type: AttributeType.STRING },
     });
 
-    tableName = `${APP_PREFIX}-Drivers-${stage}`;
+    tableName = `${APP_PREFIX}-Drivers`;
 
     const driversTable = new Table(this, tableName, {
       tableName,
@@ -50,7 +50,7 @@ export class DDBStack extends cdk.Stack {
 
     // S3 Bucket (1 bucket containing initial data for all tables)
 
-    const bucketName = `${APP_PREFIX}-DDB-Initial-Data-Bucket-${stage}`;
+    const bucketName = `${APP_PREFIX}-DDB-Initial-Data-Bucket`;
 
     const bucket = new Bucket(this, bucketName, {
       bucketName: bucketName.toLowerCase(),
@@ -61,7 +61,7 @@ export class DDBStack extends cdk.Stack {
 
     new BucketDeployment(
       this,
-      `${APP_PREFIX}-DDB-Initial-Data-Bucket-Deployment-${stage}`,
+      `${APP_PREFIX}-DDB-Initial-Data-Bucket-Deployment`,
       {
         sources: [Source.asset("../ddb")],
         destinationBucket: bucket,
@@ -79,7 +79,7 @@ export class DDBStack extends cdk.Stack {
 
     const initiator = new Function(
       this,
-      `${APP_PREFIX}-DDB-Initiator-${stage}`,
+      `${APP_PREFIX}-DDB-Initiator`,
       {
         runtime: Runtime.NODEJS_18_X,
         code: Code.fromAsset("../lambda/src"),

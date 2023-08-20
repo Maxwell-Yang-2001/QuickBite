@@ -5,7 +5,6 @@ import {
   BlockPublicAccess,
   Bucket,
   BucketAccessControl,
-  RedirectProtocol,
 } from "aws-cdk-lib/aws-s3";
 import { BucketDeployment, Source } from "aws-cdk-lib/aws-s3-deployment";
 import {
@@ -24,12 +23,12 @@ export class FrontendStack extends cdk.Stack {
   constructor(
     scope: Construct,
     props: cdk.StackProps,
-    stage: string,
-    domain?: string
+    domain?: string,
+    hostedZoneId?: string
   ) {
-    super(scope, `${APP_PREFIX}-FrontendStack-${stage}`, props);
+    super(scope, `${APP_PREFIX}-FrontendStack`, props);
 
-    const bucket = new Bucket(this, `${APP_PREFIX}-Web-Bucket-${stage}`, {
+    const bucket = new Bucket(this, `${APP_PREFIX}-Web-Bucket`, {
       bucketName: domain,
       publicReadAccess: true,
       removalPolicy: cdk.RemovalPolicy.DESTROY,
@@ -39,15 +38,15 @@ export class FrontendStack extends cdk.Stack {
       accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
     });
 
-    new BucketDeployment(this, `${APP_PREFIX}-Web-Bucket-Deployment-${stage}`, {
-      sources: [Source.asset("../frontend/build")],
+    new BucketDeployment(this, `${APP_PREFIX}-Web-Bucket-Deployment`, {
+      sources: [Source.asset("../../frontend/build")],
       destinationBucket: bucket,
     });
 
-    // if no domain is given, return after CloudFront
+    // if no domain or hosted zone s given, return after CloudFront
 
-    if (!domain) {
-      new CloudFrontWebDistribution(this, `${APP_PREFIX}-CloudFront-${stage}`, {
+    if (!domain || !hostedZoneId) {
+      new CloudFrontWebDistribution(this, `${APP_PREFIX}-CloudFront`, {
         originConfigs: [
           {
             s3OriginSource: {
@@ -60,28 +59,11 @@ export class FrontendStack extends cdk.Stack {
       return;
     }
 
-    // second bucket to redirect from www if domain is given
-
-    const indirectBucket = new Bucket(
-      this,
-      `${APP_PREFIX}-Web-Indirect-Bucket-${stage}`,
-      {
-        bucketName: `www.${domain}`,
-        publicReadAccess: true,
-        removalPolicy: cdk.RemovalPolicy.DESTROY,
-        websiteRedirect: {
-          hostName: domain,
-          protocol: RedirectProtocol.HTTP,
-        },
-        blockPublicAccess: BlockPublicAccess.BLOCK_ACLS,
-        accessControl: BucketAccessControl.BUCKET_OWNER_FULL_CONTROL,
-      }
-    );
-
     // Zone
 
-    const zone = HostedZone.fromLookup(this, "baseZone", {
-      domainName: domain,
+    const zone = HostedZone.fromHostedZoneAttributes(this, "HostedZone", {
+      hostedZoneId,
+      zoneName: "quick-bite.net",
     });
 
     // Certificate
@@ -91,20 +73,11 @@ export class FrontendStack extends cdk.Stack {
       validation: CertificateValidation.fromDns(zone),
     });
 
-    const redirectCertificate = new Certificate(
-      this,
-      `${APP_PREFIX}-Redirect-Certificate`,
-      {
-        domainName: `www.${domain}`,
-        validation: CertificateValidation.fromDns(zone),
-      }
-    );
-
     // CloudFront
 
     const distribution = new CloudFrontWebDistribution(
       this,
-      `${APP_PREFIX}-CloudFront-${stage}`,
+      `${APP_PREFIX}-CloudFront`,
       {
         originConfigs: [
           {
@@ -121,37 +94,10 @@ export class FrontendStack extends cdk.Stack {
       }
     );
 
-    const redirectDistribution = new CloudFrontWebDistribution(
-      this,
-      `${APP_PREFIX}-Indirect-CloudFront-${stage}`,
-      {
-        originConfigs: [
-          {
-            s3OriginSource: {
-              s3BucketSource: indirectBucket,
-            },
-            behaviors: [{ isDefaultBehavior: true }],
-          },
-        ],
-        viewerCertificate: ViewerCertificate.fromAcmCertificate(
-          redirectCertificate,
-          { aliases: [`www.${domain}`] }
-        ),
-      }
-    );
-
     // DNS
 
     new ARecord(this, `${APP_PREFIX}-Alias`, {
       target: RecordTarget.fromAlias(new CloudFrontTarget(distribution)),
-      zone,
-    });
-
-    new ARecord(this, `${APP_PREFIX}-Redirect-Alias`, {
-      recordName: "www",
-      target: RecordTarget.fromAlias(
-        new CloudFrontTarget(redirectDistribution)
-      ),
       zone,
     });
   }

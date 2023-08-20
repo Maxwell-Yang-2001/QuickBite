@@ -9,20 +9,14 @@ const app = new cdk.App();
 
 const env = {
   account: process.env.CDK_DEFAULT_ACCOUNT,
-  region: process.env.CDK_DEFAULT_REGION,
+  region: process.env.CDK_DEFAULT_REGION, // should preferrably be "us-east-1" for ease of management
 };
 
-const stage = process.env.CDK_DEPLOYMENT_STAGE === "prod" ? "prod" : "devo";
-const domain =
-  stage === "prod" && process.env.CDK_CUSTOM_DOMAIN
-    ? process.env.CDK_CUSTOM_DOMAIN
-    : undefined;
+const domain = process.env.CDK_CUSTOM_DOMAIN;
+const hostedZoneId = process.env.CDK_HOSTED_ZONE_ID;
 
-new APIStack(app, { env }, stage);
+new APIStack(app, { env });
 
-new DDBStack(app, { env }, stage);
+new DDBStack(app, { env });
 
-// As certificates need to be in us-east-1 and all other stack assets are region-agnostic, only deploy to us-east-1
-if (env.region === "us-east-1") {
-  new FrontendStack(app, { env }, stage, domain);
-}
+new FrontendStack(app, { env }, domain, hostedZoneId);
