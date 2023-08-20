@@ -4,6 +4,7 @@ import * as cdk from "aws-cdk-lib";
 import { APIStack } from "../lib/stacks/api-stack";
 import { DDBStack } from "../lib/stacks/ddb-stack";
 import { FrontendStack } from "../lib/stacks/frontend-stack";
+import { CognitoStack } from "../lib/stacks/cognito-stack";
 
 const app = new cdk.App();
 
@@ -20,3 +21,5 @@ new APIStack(app, { env });
 new DDBStack(app, { env });
 
 new FrontendStack(app, { env }, domain, hostedZoneId);
+
+new CognitoStack(app, { env });

@@ -23,9 +23,11 @@
 }
 
 .store-page-sidebar {
-  width: 300px;
+  width: 220px;
   position: sticky;
   top: 20px;
+  border-right: 2px black solid;
+  margin-right: 80px;
 }
 
 .store-page-sidebar ul {

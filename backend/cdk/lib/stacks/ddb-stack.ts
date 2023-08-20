@@ -36,7 +36,7 @@ export class DDBStack extends cdk.Stack {
       tableName,
       billingMode: BillingMode.PAY_PER_REQUEST,
       removalPolicy: cdk.RemovalPolicy.RETAIN,
-      partitionKey: { name: "id", type: AttributeType.STRING },
+      partitionKey: { name: "name", type: AttributeType.STRING },
     });
 
     tableName = `${APP_PREFIX}-Drivers`;
