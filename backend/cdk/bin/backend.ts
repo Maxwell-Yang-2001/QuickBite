@@ -5,6 +5,7 @@ import { APIStack } from "../lib/stacks/api-stack";
 import { DDBStack } from "../lib/stacks/ddb-stack";
 import { FrontendStack } from "../lib/stacks/frontend-stack";
 import { CognitoStack } from "../lib/stacks/cognito-stack";
+import { AssetStack } from "../lib/stacks/asset-stack";
 
 const app = new cdk.App();
 
@@ -23,3 +24,5 @@ new DDBStack(app, { env });
 new FrontendStack(app, { env }, domain, hostedZoneId);
 
 new CognitoStack(app, { env });
+
+new AssetStack(app, { env });
